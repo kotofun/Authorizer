@@ -14,3 +14,18 @@
 $app->get('/', function () use ($app) {
     return $app->version();
 });
+
+$app->group([
+    'prefix' => 'socialize',
+    'namespace' => 'App\Http\Controllers',
+], function () use ($app) {
+    $app->get('{provider}', [
+        'as' => 'socialize.request',
+        'uses' => 'SocializeController@request',
+    ]);
+
+    $app->get('{provider}/handle', [
+        'as' => 'socialize.handle',
+        'uses' => 'SocializeController@handle',
+    ]);
+});

@@ -1,0 +1,178 @@
+@charset "utf-8";
+@import url("reset.css");
+
+* {
+   box-sizing: border-box;
+}
+
+.clear {
+   width:100%;
+   clear:both;
+}
+
+body {
+   height:100%;
+   font-family: Roboto;
+}
+
+
+.cursive {
+   font-style: italic;
+}
+
+a {
+   text-decoration: none;
+   color: #000;
+}
+
+a:hover,
+a:active {
+   color: #ed4e42;
+   outline: none;
+}
+
+header,
+footer{
+   height: 10vh;
+   width: 100%;
+   min-height:70px; 
+}
+
+header {
+   background: url('../images/header.png');
+   box-shadow: inset 0 50px 40px rgba(0, 0, 0, 0.7);
+}
+
+.content {
+   min-height: 80vh;
+   width: 100%;
+   background-color: #efefef;
+   padding: 25px 0;
+}
+
+.content_auth {
+   font-size: 14px;
+   width: 400px;
+   max-width: 100%;
+   margin: 0 auto;
+   border: 0px solid #ed4e42;
+   padding: 30px 10px;
+   text-align: center;
+   background-color: #fff;
+   border-radius: 10px;
+   text-align: center;
+}
+
+.content_auth h3{
+   font-size: 28px;
+   font-weight: bold;
+   color: #ed4e42;
+
+}
+
+.content_auth form input{
+   width: 80%;
+   height: 35px;
+   line-height: 35px;
+   color: #ed4e42;
+   display: block;
+   margin: 20px auto;
+   border: 0px solid #ed4e42;
+   font-family: Roboto;
+   border-radius: 2px;
+   padding-left: 10px;
+   background-color: #efefef;
+}
+
+.content_auth button {
+   height: 34px;
+   padding: 0 15px;
+   text-align: center;
+   line-height: 30px;
+   border: 1px solid #ed4e42;
+   border-radius: 17px;
+   font: 14px Roboto;
+   cursor: pointer;
+   text-transform: uppercase;
+   margin: 15px 0 20px 0;
+}
+
+.orange_button {
+   background-color: #ed4e42;
+   color: #fff;
+}
+
+.white_button {
+   background-color: #fff;
+   color: #ed4e42; 
+}
+
+.content_auth_divider{
+   height: 2px;
+   width: 80%;
+   margin: 10px auto 20px;
+   background-color: #efefef;
+}
+
+.content_auth p {
+   width: 80%;
+   margin: 0 auto;
+}
+
+.content_auth_social {
+   width: 70%;
+   margin: 20px auto;
+}
+
+.content_auth_social-item {
+   display: inline-block;
+   height: 45px;
+   width: 45px;
+   border-radius: 50%;
+   margin: 0 4px;
+   background-image: url('../images/icons.png');
+}
+
+.content_auth_social-item:active {
+   box-shadow: inset 4px 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.fb-item {
+   background-position: 180px 0;
+}
+
+.vk-item {
+   background-position: 0px;
+}
+
+.ok-item {
+   background-position: 135px 0;
+}
+.tw-item {
+   background-position: 90px 0;
+}
+.go-item {
+   background-position: 45px 0;
+}
+
+footer {
+   color: #c8c8c8;
+   text-align: center;
+   line-height: 70px;
+   font-weight: 300;
+   font-size: 14px;
+   background-color: #fff;
+}
+
+.container {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 700px) {
+    .content_auth {
+        width: 100%;
+        border-radius: 0;
+    }
+}

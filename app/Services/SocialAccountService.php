@@ -16,6 +16,7 @@ class SocialAccountService
         if ($account) {
             return $account->user;
         }
+
         $account = SocialAccount::create([
             'provider' => $providerName,
             'provider_user_id' => $providerUser->getId(),
@@ -25,7 +26,7 @@ class SocialAccountService
             ->first();
 
         if ( ! $user) {
-            User::createBySocialProvider($providerUser);
+            $user = User::createBySocialProvider($providerUser);
         }
 
         $account->user()->associate($user);

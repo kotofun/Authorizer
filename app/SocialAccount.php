@@ -20,6 +20,22 @@ class SocialAccount extends Model
     ];
 
     /**
+     * Add social account specific info to query scope.
+     *
+     * @param $query
+     * @param $providerName
+     * @param $providerUserId
+     *
+     * @return mixed
+     */
+    public static function scopeFindByProvider($query, $providerName, $providerUserId)
+    {
+        return $query
+            ->where('provider', $providerName)
+            ->where('provider_user_id', $providerUserId);
+    }
+
+    /**
      * Get related registered user account.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

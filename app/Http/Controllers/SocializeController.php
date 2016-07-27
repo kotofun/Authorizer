@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\SocialAccountService;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocializeController extends Controller
@@ -21,8 +22,12 @@ class SocializeController extends Controller
         return Socialite::with($provider)->stateless()->redirect();
     }
 
-    public function handle($provider)
+    public function handle(SocialAccountService $socialAccountService, $provider)
     {
-        $user = Socialite::driver($provider)->stateless()->user();
+        $user = $socialAccountService->createOrGetUser(
+            Socialite::driver($provider)->stateless()->user(),
+            $provider);
+
+        return "You are logged, dear {$user->name}";
     }
 }

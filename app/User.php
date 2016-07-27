@@ -44,6 +44,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public static function createBySocialProvider(ProviderUser $providerUser)
     {
         return self::create([
+            'nickname' => $providerUser->getNickname(),
             'name' => $providerUser->getName(),
             'nickname' => $providerUser->getNickname(),
             'email' => $providerUser->getEmail(),

@@ -28,6 +28,6 @@ class CreateSocialAccountsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('user_social_accounts');
+        Schema::drop('social_accounts');
     }
 }

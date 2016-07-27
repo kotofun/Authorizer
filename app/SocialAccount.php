@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class SocialAccount extends Model
 {
-    use Authenticatable, Authorizable;
-
     /**
      * The attributes that are mass assignable.
      *

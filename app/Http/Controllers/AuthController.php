@@ -64,6 +64,6 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        return view('providers.index');
+        return view('auth.login');
     }
 }

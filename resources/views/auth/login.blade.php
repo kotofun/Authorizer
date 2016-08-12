@@ -5,7 +5,7 @@
         <div class="content_auth">
             <h3>Авторизация</h3>
             <form method="POST" id="login-form" action="{{ route('auth.login.post') }}">
-                @if(true === $auth_fails)
+                @if(isset($auth_fails) && true === $auth_fails)
                     <span>Извините, но введенные вами данные не верны.</span>
                 @endif
                 <input type="email" name="email" required="required" placeholder="Email"/>

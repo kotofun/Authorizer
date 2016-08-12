@@ -40,13 +40,12 @@ class AuthController extends Controller
         return "You are logged, dear {$user->name}";
     }
 
-    public function showRegister()
-    {
-        return view('auth.register');
-    }
-
     public function register(Request $request)
     {
+        if ('GET' === $request->method()) {
+            return view('auth.register');
+        }
+
         $validator = Validator::make($request->all(), [
             'last_name' => 'required|alpha',
             'first_name' => 'required|alpha',

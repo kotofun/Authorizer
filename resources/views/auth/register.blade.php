@@ -4,7 +4,7 @@
     <div class="content">
         <div class="content_auth">
             <h3>Регистрация</h3>
-            <form method="POST" id="register-form" action="{{ route('auth.register.create') }}">
+            <form method="POST" id="register-form" action="{{ route('auth.register.post') }}">
                 <input type="text" name="last_name" required="required" placeholder="Фамилия" value="{{ $last_name or '' }}">
                 @include('auth.error', ['errors' => isset($errors) ? $errors->get('last_name') : []])
                 <input type="text" name="first_name" required="required" placeholder="Имя" value="{{ $first_name or '' }}">

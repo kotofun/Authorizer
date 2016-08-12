@@ -22,12 +22,12 @@ $app->post('/', [
 ]);
 
 $app->get('register', [
-    'as' => 'auth.register.show',
-    'uses' => 'AuthController@showRegister',
+    'as' => 'auth.register.get',
+    'uses' => 'AuthController@register',
 ]);
 
 $app->post('register', [
-    'as' => 'auth.register.create',
+    'as' => 'auth.register.post',
     'uses' => 'AuthController@register',
 ]);
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Services\SocialAccountService;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Socialite\Facades\Socialite;
 use Lcobucci\JWT\Builder;
@@ -64,6 +66,16 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        return view('auth.login');
+        if ('GET' === $request->method()) {
+            return view('auth.login');
+        }
+
+        $user = User::where($request->only('email'))->first();
+
+        if (is_null($user) || Hash::check($user->password, $request->get('password'))) {
+            return view('auth.login')->with(['auth_fails' => true]);
+        }
+
+        return "You are logged, dear {$user->name}";
     }
 }

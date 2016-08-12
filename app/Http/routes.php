@@ -12,8 +12,13 @@
 */
 
 $app->get('/', [
-    'as' => 'auth.index',
-    'uses' => 'AuthController@index',
+    'as' => 'auth.login.get',
+    'uses' => 'AuthController@login',
+]);
+
+$app->post('/', [
+    'as' => 'auth.login.post',
+    'uses' => 'AuthController@login',
 ]);
 
 $app->get('register', [

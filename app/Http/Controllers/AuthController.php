@@ -40,11 +40,6 @@ class AuthController extends Controller
         return "You are logged, dear {$user->name}";
     }
 
-    public function index()
-    {
-        return view('providers.index');
-    }
-
     public function showRegister()
     {
         return view('auth.register');
@@ -66,5 +61,10 @@ class AuthController extends Controller
         User::createFromRegister($request->all());
 
         return redirect()->route('auth.index');
+    }
+
+    public function login(Request $request)
+    {
+        return view('providers.index');
     }
 }

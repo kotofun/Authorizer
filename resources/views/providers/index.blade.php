@@ -20,9 +20,6 @@
                 <a href="{{ route('socialize.request', ['provider' => 'vkontakte']) }}">
                     <li class="content_auth_social-item vk-item"></li>
                 </a>
-                <a href="{{ route('socialize.request', ['provider' => 'twitter']) }}">
-                    <li class="content_auth_social-item tw-item"></li>
-                </a>
                 <a href="{{ route('socialize.request', ['provider' => 'google']) }}">
                     <li class="content_auth_social-item go-item"></li>
                 </a>

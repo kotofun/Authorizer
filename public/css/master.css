@@ -176,3 +176,8 @@ footer {
         border-radius: 0;
     }
 }
+
+.validation_error {
+   display: block;
+   color: #ff0000;
+}

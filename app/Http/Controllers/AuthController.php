@@ -59,7 +59,7 @@ class AuthController extends Controller
 
         User::createFromRegister($request->all());
 
-        return redirect()->route('auth.index');
+        return redirect()->route('auth.login.get');
     }
 
     public function login(Request $request)

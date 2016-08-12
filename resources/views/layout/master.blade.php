@@ -20,8 +20,6 @@
     <meta content="Мы - сообщество людей, желающих сделать перевод лекций MIT на русский язык" itemprop="description" />
     <meta content="http://kursomir.ru/images/kursomir.png" property="og:image" />
     <meta content="http://kursomir.ru/images/kursomir.png" name="twitter:image:src" />
-    <meta name="csrf-param" content="authenticity_token" />
-    <meta name="csrf-token" content="NQm4M+XSLpgFgXd8jedcvK2t5fdONeS1opOcc9xOA0c+d6H6hpa/6I9bL+U1e7h/VocleRYotF/lustkS2QJdw==" />
 
     <title>Вход</title>
     <link href="{{ URL::asset('css/master.css') }}" rel="stylesheet" type="text/css" />

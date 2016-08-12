@@ -24,8 +24,7 @@ $app = new Laravel\Lumen\Application(
 );
 
 $app->withFacades();
-
- $app->withEloquent();
+$app->withEloquent();
 
 class_alias(\Laravel\Socialite\Facades\Socialite::class, 'Socialize');
 

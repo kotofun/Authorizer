@@ -31,10 +31,9 @@
 
             <div class="content_auth_divider"></div>
             <p>Еще не зарегистрированы?</p>
-            <a href="#">
+            <a href="{{ route('auth.register.show') }}">
                 <button type="button" class="orange_button">Регистрация</button>
             </a>
         </div>
     </div>
-
 @endsection

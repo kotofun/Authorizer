@@ -18,6 +18,11 @@ $app->get('register', [
     'uses' => 'UIController@showRegister',
 ]);
 
+$app->post('register', [
+    'as' => 'auth.register.create',
+    'uses' => 'UIController@register',
+]);
+
 $app->group([
     'prefix' => 'socialize',
     'namespace' => 'App\Http\Controllers',

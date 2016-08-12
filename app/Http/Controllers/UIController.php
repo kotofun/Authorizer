@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class UIController extends Controller
@@ -38,5 +38,7 @@ class UIController extends Controller
         if ($validator->fails()) {
             return view('auth.register')->withErrors($validator)->with($request->all());
         }
+
+        $user = User::createFromRegister($request->all());
     }
 }

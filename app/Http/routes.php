@@ -13,6 +13,11 @@
 
 $app->get('/', 'UIController@index');
 
+$app->get('register', [
+    'as' => 'auth.register.show',
+    'uses' => 'UIController@showRegister',
+]);
+
 $app->group([
     'prefix' => 'socialize',
     'namespace' => 'App\Http\Controllers',

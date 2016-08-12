@@ -6,8 +6,6 @@ class UIController extends Controller
 {
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -17,5 +15,10 @@ class UIController extends Controller
     public function index()
     {
         return view('providers.index');
+    }
+
+    public function showRegister()
+    {
+        return view('auth.register');
     }
 }

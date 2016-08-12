@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Lumen\Auth\Authorizable;
 use Laravel\Socialite\Contracts\User as ProviderUser;
 
@@ -23,6 +24,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'name',
         'nickname',
         'email',
+        'password',
     ];
 
     /**
@@ -49,6 +51,20 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             'nickname' => $providerUser->getNickname(),
             'email' => $providerUser->getEmail(),
         ]);
+    }
+
+    public static function createFromRegister(array $attributes)
+    {
+        return self::create([
+            'name' => "{$attributes['last_name']} {$attributes['first_name']}",
+            'email' => $attributes['email'],
+            'password' => $attributes['password'],
+        ]);
+    }
+
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = Hash::make($password);
     }
 
     /**

@@ -9,7 +9,8 @@
         "laravel/lumen-framework": "5.2.*",
         "vlucas/phpdotenv": "~2.2",
         "socialiteproviders/vkontakte": "^2.0",
-        "socialiteproviders/twitter": "^2.0"
+        "socialiteproviders/twitter": "^2.0",
+        "lcobucci/jwt": "^3.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

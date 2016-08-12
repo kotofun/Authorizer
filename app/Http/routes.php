@@ -11,16 +11,16 @@
 |
 */
 
-$app->get('/', 'UIController@index');
+$app->get('/', 'AuthController@index');
 
 $app->get('register', [
     'as' => 'auth.register.show',
-    'uses' => 'UIController@showRegister',
+    'uses' => 'AuthController@showRegister',
 ]);
 
 $app->post('register', [
     'as' => 'auth.register.create',
-    'uses' => 'UIController@register',
+    'uses' => 'AuthController@register',
 ]);
 
 $app->group([
@@ -29,11 +29,11 @@ $app->group([
 ], function () use ($app) {
     $app->get('{provider}', [
         'as' => 'socialize.request',
-        'uses' => 'SocializeController@request',
+        'uses' => 'AuthController@request',
     ]);
 
     $app->get('{provider}/handle', [
         'as' => 'socialize.handle',
-        'uses' => 'SocializeController@handle',
+        'uses' => 'AuthController@handle',
     ]);
 });

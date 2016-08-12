@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\SocialAccountService;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Laravel\Socialite\Facades\Socialite;
 
-class UIController extends Controller
+class AuthController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -14,6 +16,20 @@ class UIController extends Controller
     public function __construct()
     {
         //
+    }
+
+    public function request($provider)
+    {
+        return Socialite::with($provider)->stateless()->redirect();
+    }
+
+    public function handle(SocialAccountService $socialAccountService, $provider)
+    {
+        $user = $socialAccountService->createOrGetUser(
+            Socialite::driver($provider)->stateless()->user(),
+            $provider);
+
+        return "You are logged, dear {$user->name}";
     }
 
     public function index()

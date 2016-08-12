@@ -71,11 +71,11 @@ class AuthController extends Controller
         }
 
         $user = User::where($request->only('email'))->first();
-
-        if (is_null($user) || Hash::check($user->password, $request->get('password'))) {
-            return view('auth.login')->with(['auth_fails' => true]);
+        
+        if (! is_null($user) && Hash::check($request->get('password'), $user->password)) {
+            return "You are logged, dear {$user->name}";
         }
 
-        return "You are logged, dear {$user->name}";
+        return view('auth.login')->with(['auth_fails' => true]);
     }
 }

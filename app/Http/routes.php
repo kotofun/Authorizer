@@ -11,7 +11,10 @@
 |
 */
 
-$app->get('/', 'AuthController@index');
+$app->get('/', [
+    'as' => 'auth.index',
+    'uses' => 'AuthController@index',
+]);
 
 $app->get('register', [
     'as' => 'auth.register.show',

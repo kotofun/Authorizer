@@ -7,15 +7,23 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Socialite\Facades\Socialite;
+use Lcobucci\JWT\Builder;
 
 class AuthController extends Controller
 {
     /**
-     * Create a new controller instance.
+     * @var \Lcobucci\JWT\Builder
      */
-    public function __construct()
+    private $jwtBuilder;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @param \Lcobucci\JWT\Builder $jwtBuilder
+     */
+    public function __construct(Builder $jwtBuilder)
     {
-        //
+        $this->jwtBuilder = $jwtBuilder;
     }
 
     public function request($provider)
@@ -55,6 +63,8 @@ class AuthController extends Controller
             return view('auth.register')->withErrors($validator)->with($request->all());
         }
 
-        $user = User::createFromRegister($request->all());
+        User::createFromRegister($request->all());
+
+        return redirect()->route('auth.index');
     }
 }

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Laravel\Socialite\Facades\Socialite;
 use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\Signer;
+use Symfony\Component\HttpFoundation\Cookie;
 
 class AuthController extends Controller
 {
@@ -48,7 +49,7 @@ class AuthController extends Controller
                 ->user(),
             $provider);
 
-        return "You are logged, dear {$user->name}";
+        return $this->logged($user);
     }
 
     public function register(Request $request)
@@ -107,5 +108,13 @@ class AuthController extends Controller
             ->getToken();
 
         return $token;
+    }
+
+    private function logged(User $user, array $rights = [])
+    {
+        $token = $this->buildToken($user, $rights);
+        $cookie = new Cookie('token', $token, 0, '/', null, false, false);
+
+        return view('auth.logged')->withCookie($cookie);
     }
 }

@@ -11,42 +11,15 @@
 |
 */
 
-$app->group([
-    'middleware' => ['token.check'],
-    'namespace' => '\App\Http\Controllers',
-], function () use ($app) {
-    $app->get('/', [
-        'as' => 'auth.login.get',
-        'uses' => 'AuthController@login',
-    ]);
+$app->group(['middleware' => ['token.check'], 'namespace' => '\App\Http\Controllers'], function () use ($app) {
+    $app->get('/', ['uses' => 'AuthController@login', 'as' => 'auth.login.get']);
+    $app->post('/', ['uses' => 'AuthController@login', 'as' => 'auth.login.post']);
 
-    $app->post('/', [
-        'as' => 'auth.login.post',
-        'uses' => 'AuthController@login',
-    ]);
+    $app->get('register', ['uses' => 'AuthController@register', 'as' => 'auth.register.get']);
+    $app->post('register', ['uses' => 'AuthController@register', 'as' => 'auth.register.post']);
 
-    $app->get('register', [
-        'as' => 'auth.register.get',
-        'uses' => 'AuthController@register',
-    ]);
-
-    $app->post('register', [
-        'as' => 'auth.register.post',
-        'uses' => 'AuthController@register',
-    ]);
-
-    $app->group([
-        'prefix' => 'socialize',
-        'namespace' => 'App\Http\Controllers',
-    ], function () use ($app) {
-        $app->get('{provider}', [
-            'as' => 'socialize.request',
-            'uses' => 'AuthController@request',
-        ]);
-
-        $app->get('{provider}/handle', [
-            'as' => 'socialize.handle',
-            'uses' => 'AuthController@handle',
-        ]);
+    $app->group(['namespace' => 'App\Http\Controllers'], function () use ($app) {
+        $app->get('socialize/{provider}', ['uses' => 'AuthController@request', 'as' => 'socialize.request']);
+        $app->get('socialize/{provider}/handle', ['uses' => 'AuthController@handle', 'as' => 'socialize.handle']);
     });
 });

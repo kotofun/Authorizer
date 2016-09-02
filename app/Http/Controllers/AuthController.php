@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Tokenizer;
 use App\Services\SocialAccountService;
 use App\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Socialite\Facades\Socialite;
-use Lcobucci\JWT\Builder;
-use Lcobucci\JWT\Signer;
 use Symfony\Component\HttpFoundation\Cookie;
 
 class AuthController extends Controller
@@ -23,15 +21,12 @@ class AuthController extends Controller
         'password' => 'required|confirmed|min:6',
     ];
 
-    /* @var \Lcobucci\JWT\Builder */
-    private $jwtBuilder;
-    /* @var \Lcobucci\JWT\Signer */
-    private $jwtSigner;
+    /* @var \App\Services\Tokenizer */
+    private $tokenizer;
 
-    public function __construct(Builder $jwtBuilder, Signer $jwtSigner)
+    public function __construct(Tokenizer $tokenizer)
     {
-        $this->jwtBuilder = $jwtBuilder;
-        $this->jwtSigner = $jwtSigner;
+        $this->tokenizer = $tokenizer;
     }
 
     public function request($provider)
@@ -84,35 +79,10 @@ class AuthController extends Controller
         return view('auth.login')->with(['auth_fails' => true]);
     }
 
-    private function buildToken(User $user, array $rights = [])
-    {
-        $now = Carbon::now();
-        $expInterval = \DateInterval::createFromDateString(env('JWT_EXPIRATION_TIME', 3600).' seconds');
-
-        $sub = $user->getAttribute('id');
-        $iat = $now->timestamp;
-        $exp = $now->add($expInterval)->timestamp;
-
-        $builder = $this->jwtBuilder
-            ->setSubject($sub)
-            ->setIssuedAt($iat)
-            ->setExpiration($exp)
-            ->set('name', $user->getAttribute('name'));
-
-        foreach ($rights as $name => $value) {
-            $builder->set($name, $value);
-        }
-
-        $token = $builder
-            ->sign($this->jwtSigner, env('JWT_SECRET'))
-            ->getToken();
-
-        return $token;
-    }
-
     private function logged(User $user, array $rights = [])
     {
-        $token = $this->buildToken($user, $rights);
+        $token = $this->tokenizer->buildFrom($user, $rights);
+
         $cookie = new Cookie('token', $token, 0, '/', null, false, false);
 
         return view('auth.logged')->withCookie($cookie);

@@ -11,7 +11,7 @@
 |
 */
 
-$app->group(['middleware' => ['token.check'], 'namespace' => '\App\Http\Controllers'], function () use ($app) {
+$app->group(['middleware' => ['token.refresh'], 'namespace' => '\App\Http\Controllers'], function () use ($app) {
     $app->get('/', ['uses' => 'AuthController@login', 'as' => 'auth.login.get']);
     $app->post('/', ['uses' => 'AuthController@login', 'as' => 'auth.login.post']);
 

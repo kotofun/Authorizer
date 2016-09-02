@@ -5,9 +5,10 @@ namespace App\Http\Middleware;
 use App\Services\Tokenizer;
 use App\User;
 use Closure;
+use Illuminate\Http\Response;
 use Symfony\Component\HttpFoundation\Cookie;
 
-class CheckToken
+class RefreshToken
 {
     /* @var \App\Services\Tokenizer */
     private $tokenizer;
@@ -28,27 +29,22 @@ class CheckToken
     public function handle($request, Closure $next)
     {
         $token = $request->cookie('token');
-        if (is_null($token)) {
+        if (is_null($token) || ( ! $this->tokenizer->isValid($token))) {
             return $next($request);
         }
 
-        $token = $this->tokenizer->parse($token);
+        $token = $this->tokenizer->refreshToken($token);
+        $user = $this->tokenizer->userFrom($token);
 
-        if ($this->tokenizer->isValid($token)) {
-            $user = $this->tokenizer->userFrom($token);
-
-            $token = $this->tokenizer->buildFrom($user);
-
-            return $this->logged($user, $token);
-        }
+        return $this->logged($user, $token);
     }
 
     private function logged(User $user, $token)
     {
         $cookie = new Cookie('token', $token, 0, '/', null, false, false);
+        $response = new Response(view('auth.logged')->with($user->toArray()));
+        $response->withCookie($cookie);
 
-        return view('auth.logged')
-            ->with($user->toArray())
-            ->withCookie($cookie);
+        return $response;
     }
 }

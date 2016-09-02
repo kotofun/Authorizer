@@ -69,7 +69,7 @@ $app->singleton(
 // ]);
 
 $app->routeMiddleware([
-    'token.check' => \App\Http\Middleware\CheckToken::class,
+    'token.refresh' => \App\Http\Middleware\RefreshToken::class,
 ]);
 
 /*

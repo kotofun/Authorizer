@@ -85,6 +85,8 @@ class AuthController extends Controller
 
         $cookie = new Cookie('token', $token, 0, '/', null, false, false);
 
-        return view('auth.logged')->withCookie($cookie);
+        return view('auth.logged')
+            ->with($user->toArray())
+            ->withCookie($cookie);
     }
 }

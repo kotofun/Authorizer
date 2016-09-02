@@ -5,7 +5,10 @@ namespace App\Services;
 use App\User;
 use Carbon\Carbon;
 use Lcobucci\JWT\Builder;
+use Lcobucci\JWT\Parser;
 use Lcobucci\JWT\Signer;
+use Lcobucci\JWT\Token;
+use Lcobucci\JWT\ValidationData;
 
 /**
  * Class Authorizer.
@@ -18,11 +21,20 @@ class Tokenizer
     private $jwtBuilder;
     /* @var \Lcobucci\JWT\Signer */
     private $jwtSigner;
+    /* @var \Lcobucci\JWT\Parser */
+    private $parser;
+    /* @var \Lcobucci\JWT\ValidationData */
+    private $validationData;
 
-    public function __construct(Builder $jwtBuilder, Signer $jwtSigner)
+    public function __construct(Builder $jwtBuilder,
+                                Signer $jwtSigner,
+                                Parser $parser,
+                                ValidationData $validationData)
     {
         $this->jwtBuilder = $jwtBuilder;
         $this->jwtSigner = $jwtSigner;
+        $this->parser = $parser;
+        $this->validationData = $validationData;
     }
 
     public function buildFrom(User $user, array $rights = [])
@@ -49,5 +61,22 @@ class Tokenizer
             ->getToken();
 
         return $token;
+    }
+
+    public function parse($token)
+    {
+        return $this->parser->parse($token);
+    }
+
+    public function isValid(Token $token)
+    {
+        return $token->validate($this->validationData) && $token->verify($this->jwtSigner, env('JWT_SECRET'));
+    }
+
+    public function userFrom(Token $token)
+    {
+        $user = User::findOrFail($token->getClaim('sub'));
+
+        return $user;
     }
 }

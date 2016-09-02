@@ -24,7 +24,7 @@ class AuthController extends Controller
     /* @var \App\Services\Tokenizer */
     private $tokenizer;
 
-    public function __construct(Tokenizer $tokenizer)
+    public function __construct(Tokenizer $tokenizer, Request $request)
     {
         $this->tokenizer = $tokenizer;
     }
@@ -44,7 +44,9 @@ class AuthController extends Controller
                 ->user(),
             $provider);
 
-        return $this->logged($user);
+        $token = $this->tokenizer->buildFrom($user);
+
+        return $this->logged($user, $token);
     }
 
     public function register(Request $request)
@@ -79,10 +81,8 @@ class AuthController extends Controller
         return view('auth.login')->with(['auth_fails' => true]);
     }
 
-    private function logged(User $user, array $rights = [])
+    private function logged(User $user, $token)
     {
-        $token = $this->tokenizer->buildFrom($user, $rights);
-
         $cookie = new Cookie('token', $token, 0, '/', null, false, false);
 
         return view('auth.logged')

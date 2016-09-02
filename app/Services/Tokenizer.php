@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Exceptions\InvalidTokenException;
 use App\User;
 use Carbon\Carbon;
 use Lcobucci\JWT\Builder;
@@ -39,9 +40,7 @@ class Tokenizer
 
     public function refreshToken($token)
     {
-        if (is_string($token)) {
-            $token = $this->parse($token);
-        }
+        $token = $this->parse($token);
 
         if ( ! $this->isValid($token)) {
             return;
@@ -52,16 +51,20 @@ class Tokenizer
         return $this->buildFrom($user);
     }
 
-    public function parse($token)
+    private function parse($token)
     {
-        return $this->parser->parse($token);
+        if (is_null($token)) {
+            throw new InvalidTokenException('token could not be null');
+        } elseif (is_string($token)) {
+            $token = $this->parser->parse($token);
+        }
+
+        return $token;
     }
 
     public function isValid($token)
     {
-        if (is_string($token)) {
-            $token = $this->parse($token);
-        }
+        $token = $this->parse($token);
 
         return $token->validate($this->validationData) && $token->verify($this->jwtSigner, env('JWT_SECRET'));
     }

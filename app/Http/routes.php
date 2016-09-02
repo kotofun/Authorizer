@@ -23,3 +23,7 @@ $app->group(['middleware' => ['token.refresh'], 'namespace' => '\App\Http\Contro
         $app->get('socialize/{provider}/handle', ['uses' => 'AuthController@handle', 'as' => 'socialize.handle']);
     });
 });
+
+$app->group(['namespace' => '\App\Http\Controllers'], function () use ($app) {
+    $app->post('token/refresh', ['uses' => 'TokenController@refresh', 'as' => 'token.update']);
+});

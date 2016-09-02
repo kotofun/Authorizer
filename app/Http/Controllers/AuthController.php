@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Services\SocialAccountService;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Socialite\Facades\Socialite;
@@ -13,16 +12,9 @@ use Lcobucci\JWT\Builder;
 
 class AuthController extends Controller
 {
-    /**
-     * @var \Lcobucci\JWT\Builder
-     */
+    /* @var \Lcobucci\JWT\Builder */
     private $jwtBuilder;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @param \Lcobucci\JWT\Builder $jwtBuilder
-     */
     public function __construct(Builder $jwtBuilder)
     {
         $this->jwtBuilder = $jwtBuilder;
@@ -30,13 +22,17 @@ class AuthController extends Controller
 
     public function request($provider)
     {
-        return Socialite::with($provider)->stateless()->redirect();
+        return Socialite::with($provider)
+            ->stateless()
+            ->redirect();
     }
 
     public function handle(SocialAccountService $socialAccountService, $provider)
     {
         $user = $socialAccountService->createOrGetUser(
-            Socialite::driver($provider)->stateless()->user(),
+            Socialite::driver($provider)
+                ->stateless()
+                ->user(),
             $provider);
 
         return "You are logged, dear {$user->name}";
@@ -71,8 +67,8 @@ class AuthController extends Controller
         }
 
         $user = User::where($request->only('email'))->first();
-        
-        if (! is_null($user) && Hash::check($request->get('password'), $user->password)) {
+
+        if ( ! is_null($user) && Hash::check($request->get('password'), $user->password)) {
             return "You are logged, dear {$user->name}";
         }
 

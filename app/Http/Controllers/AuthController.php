@@ -12,6 +12,14 @@ use Lcobucci\JWT\Builder;
 
 class AuthController extends Controller
 {
+    /* @var array register validation */
+    private $rules = [
+        'last_name' => 'required|alpha',
+        'first_name' => 'required|alpha',
+        'email' => 'required|confirmed|email|unique:users',
+        'password' => 'required|confirmed|min:6',
+    ];
+
     /* @var \Lcobucci\JWT\Builder */
     private $jwtBuilder;
 
@@ -44,12 +52,7 @@ class AuthController extends Controller
             return view('auth.register');
         }
 
-        $validator = Validator::make($request->all(), [
-            'last_name' => 'required|alpha',
-            'first_name' => 'required|alpha',
-            'email' => 'required|confirmed|email|unique:users',
-            'password' => 'required|confirmed|min:6',
-        ]);
+        $validator = Validator::make($request->all(), $this->rules);
 
         if ($validator->fails()) {
             return view('auth.register')->withErrors($validator)->with($request->all());

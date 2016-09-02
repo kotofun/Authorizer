@@ -6,6 +6,7 @@ use App\Services\Tokenizer;
 use App\Services\SocialAccountService;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Socialite\Facades\Socialite;
@@ -84,9 +85,9 @@ class AuthController extends Controller
     private function logged(User $user, $token)
     {
         $cookie = new Cookie('token', $token, 0, '/', null, false, false);
+        $response = new Response(view('auth.logged')->with($user->toArray()));
+        $response->withCookie($cookie);
 
-        return view('auth.logged')
-            ->with($user->toArray())
-            ->withCookie($cookie);
+        return $response;
     }
 }

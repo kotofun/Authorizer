@@ -37,6 +37,42 @@ class Tokenizer
         $this->validationData = $validationData;
     }
 
+    public function refreshToken($token)
+    {
+        if (is_string($token)) {
+            $token = $this->parse($token);
+        }
+
+        if ( ! $this->isValid($token)) {
+            return;
+        }
+
+        $user = $this->userFrom($token);
+
+        return $this->buildFrom($user);
+    }
+
+    public function parse($token)
+    {
+        return $this->parser->parse($token);
+    }
+
+    public function isValid($token)
+    {
+        if (is_string($token)) {
+            $token = $this->parse($token);
+        }
+
+        return $token->validate($this->validationData) && $token->verify($this->jwtSigner, env('JWT_SECRET'));
+    }
+
+    public function userFrom(Token $token)
+    {
+        $user = User::findOrFail($token->getClaim('sub'));
+
+        return $user;
+    }
+
     public function buildFrom(User $user, array $rights = [])
     {
         $now = Carbon::now();
@@ -61,22 +97,5 @@ class Tokenizer
             ->getToken();
 
         return $token;
-    }
-
-    public function parse($token)
-    {
-        return $this->parser->parse($token);
-    }
-
-    public function isValid(Token $token)
-    {
-        return $token->validate($this->validationData) && $token->verify($this->jwtSigner, env('JWT_SECRET'));
-    }
-
-    public function userFrom(Token $token)
-    {
-        $user = User::findOrFail($token->getClaim('sub'));
-
-        return $user;
     }
 }

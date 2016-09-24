@@ -238,9 +238,9 @@
             background: #d74d41;
         }
 
-        .test {
+        .additional {
             padding-left: 100px;
-            height: 80px;
+            height: 40px;
             width: 300px;
         }
 
@@ -330,7 +330,7 @@
         <fieldset>
             <legend>Дополнительный контакты:</legend>
             <div>
-                <input type="text" name="additional" class="test">
+                <input type="text" name="additional" class="additional">
             </div>
         </fieldset>
         <fieldset>

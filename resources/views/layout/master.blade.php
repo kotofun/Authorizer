@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta content="503d8909f76eb7ce" name="yandex-verification"/>
     <meta content="w3xT4haMqIDKUGh6FQvWDSkPFwCsRMC0Xe4gzOZhLqQ" name="google-site-verification"/>
-    <meta content="width=960px, initial-scale=1, maximum-scale=1, minimal-ui" name="viewport"/>
+    <meta content="width=960, initial-scale=1, maximum-scale=1, minimal-ui" name="viewport"/>
     <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
     <meta content="Курсомир" itemprop="name"/>
     <meta content="summary" name="twitter:card"/>
@@ -26,8 +26,8 @@
     <title>Хочу помочь</title>
     <meta content="http://kursomir.ru/images/kursomir.png" itemprop="image"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=cyrillic" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
     <style>
+        progress,sub,sup{vertical-align:baseline}button,hr,input{overflow:visible}html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0} figcaption, menu,article,aside,details,figure,footer,header,main,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0} [hidden],template{display:none}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}figure{margin:1em 40px}hr{box-sizing:content-box;height:0}button,input,optgroup,select,textarea{font:inherit;margin:0}optgroup{font-weight:700}button,input{}button,select{text-transform:none}[type=submit], [type=reset],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:ButtonText dotted 1px}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}
         html {
             font-family: 'Open Sans', sans-serif;
         }
@@ -262,7 +262,9 @@
     <nav class="headline">
         <div class="headline__item headline__left">
             <a class="headline-logo__link" href="https://kursomir.ru">
-                <img class="headline-logo" src="/images/logo.svg" alt="Курсомир">
+                <svg role="img" class="headline-logo" title="logo" width="140" height="35.9">
+                    <use xlink:href="/images/icons.svg#logo"/>
+                </svg>
             </a>
         </div>
         <div class="headline__item headline__right">
@@ -313,16 +315,25 @@
             <legend>Со мной можно связаться:</legend>
             <ul class="social">
                 <li class="social__item">
-                    <a class="social__icon socials__icon_fb"
-                       href="{{ route('socialize.request', ['provider' => 'facebook']) }}"></a>
+                    <a href="{{ route('socialize.request', ['provider' => 'facebook']) }}">
+                        <svg role="img" title="Facebook social account" width="40" height="40">
+                            <use xlink:href="/images/icons.svg#social-fb"/>
+                        </svg>
+                    </a>
                 </li>
                 <li class="social__item">
-                    <a class="social__icon socials__icon_vk"
-                       href="{{ route('socialize.request', ['provider' => 'vkontakte']) }}"></a>
+                    <a href="{{ route('socialize.request', ['provider' => 'vkontakte']) }}">
+                        <svg role="img" title="VKontakte social account" width="40" height="40">
+                            <use xlink:href="/images/icons.svg#social-vk"/>
+                        </svg>
+                    </a>
                 </li>
                 <li class="social__item">
-                    <a class="social__icon socials__icon_gp"
-                       href="{{ route('socialize.request', ['provider' => 'google']) }}"></a>
+                    <a href="{{ route('socialize.request', ['provider' => 'google']) }}">
+                        <svg role="img" title="Google + social account" width="40" height="40">
+                            <use xlink:href="/images/icons.svg#social-gp"/>
+                        </svg>
+                    </a>
                 </li>
             </ul>
         </fieldset>

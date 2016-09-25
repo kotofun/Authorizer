@@ -23,8 +23,7 @@
     <meta content="http://kursomir.ru/images/kursomir.png" property="og:image"/>
     <meta content="http://kursomir.ru/images/kursomir.png" name="twitter:image:src"/>
 
-    <title>Вход</title>
-    {{--<link href="{{ URL::asset('css/master.css') }}" rel="stylesheet" type="text/css"/>--}}
+    <title>Хочу помочь</title>
     <meta content="http://kursomir.ru/images/kursomir.png" itemprop="image"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=cyrillic" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">

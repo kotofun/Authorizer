@@ -9,12 +9,12 @@
     <meta content="Курсомир" itemprop="name"/>
     <meta content="summary" name="twitter:card"/>
     <meta content="Курсомир" name="twitter:site"/>
-    <meta content="Вход" name="twitter:title"/>
+    <meta content='Хочу помочь проекту "Курсомир"' name="twitter:title"/>
     <meta content="kursomir.ru" name="twitter:domain"/>
     <meta content="Курсомир" property="og:site_name"/>
     <meta content="http://kursomir.ru/login" property="og:url"/>
     <meta content="website" property="og:type"/>
-    <meta content="Вход" property="og:title"/>
+    <meta content='Хочу помочь проекту "Курсомир"' property="og:title"/>
     <meta content="Мы - сообщество людей, желающих сделать перевод лекций MIT на русский язык"
           property="og:description"/>
     <meta content="Мы - сообщество людей, желающих сделать перевод лекций MIT на русский язык"
@@ -26,6 +26,7 @@
     <title>Хочу помочь</title>
     <meta content="http://kursomir.ru/images/kursomir.png" itemprop="image"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=cyrillic" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <style>
         progress,sub,sup{vertical-align:baseline}button,hr,input{overflow:visible}html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0} figcaption, menu,article,aside,details,figure,footer,header,main,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0} [hidden],template{display:none}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}figure{margin:1em 40px}hr{box-sizing:content-box;height:0}button,input,optgroup,select,textarea{font:inherit;margin:0}optgroup{font-weight:700}button,input{}button,select{text-transform:none}[type=submit], [type=reset],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:ButtonText dotted 1px}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}
         html {
@@ -206,22 +207,6 @@
             margin-left: 0;
         }
 
-        .social__icon {
-            width: 45px;
-            height: 45px;
-            display: inline-block;
-            background: url("/images/icons.png");
-            cursor: pointer;
-        }
-
-        .socials__icon_vk {
-            background-position: -45px;
-        }
-
-        .socials__icon_gp {
-            background-position: -180px;
-        }
-
         #submit {
             padding: 15px;
             background: #ec4e42;
@@ -237,19 +222,19 @@
             background: #d74d41;
         }
 
-        .selectized-text {
+        .combobox {
             position: relative;
         }
 
-        .selectized-text input[type="text"] {
-            padding: 0 0 0 100px;
+        .combobox input[type="text"] {
+            padding: 0 0 0 115px;
             height: 38px;
             width: 300px;
             margin: 0;
             border: 1px solid #ccc;
         }
 
-        .selectized-text select {
+        .combobox select {
             background: none;
             height: 40px;
             border: none;
@@ -270,6 +255,63 @@
         .description {
             color: #cccccc;
             font-size: 10px;
+        }
+
+        .dropdown__container {
+            display: inline-block;
+            position: absolute;
+            line-height: 16px;
+            display: none;
+        }
+        .dropdown__selected {
+            border: 1px solid transparent;
+            border-right: none;
+            line-height: 14px;
+            cursor: pointer;
+            background-image: url("/images/expand.svg");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+        }
+
+        .dropdown {
+            visibility: hidden;
+            background: #fff;
+            -webkit-box-shadow: 0px 3px 8px -3px rgba(0,0,0,0.75);
+            -moz-box-shadow: 0px 3px 8px -3px rgba(0,0,0,0.75);
+            box-shadow: 0px 3px 8px -3px rgba(0,0,0,0.75);
+            padding-bottom: 10px;
+        }
+        .dropdown__container_open .dropdown__selected {
+            background: #f2f2f2;
+            color: #999;
+            border: 1px solid #ccc;
+            border-right: none;
+            background-image: url("/images/shrink.svg");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+        }
+        .dropdown__container_open .dropdown {
+            visibility: visible;
+        }
+        .dropdown__item,
+        .dropdown__selected {
+            display: block;
+            padding: 12px 30px 12px 12px;
+            color: #333;
+        }
+        .dropdown__item:hover,
+        .dropdown__item_active {
+            background: #ec4e42;
+            cursor: pointer;
+            color: #fff;
+        }
+        .dropdown__item:hover + .dropdown__item_active,
+        .dropdown__item_active + .dropdown__item:hover {
+            border-top: 1px solid #fff;
+            line-height: 15px;
+        }
+        .required {
+            color: #ff7f2a;
         }
     </style>
 </head>
@@ -298,7 +340,7 @@
 <div class="content-wrapper">
     <form>
         <fieldset>
-            <legend>Хочу помочь:</legend>
+            <legend>Хочу помочь: <span class="required">*</span></legend>
             <ul class="help-type">
                 <li class="help-type__item">
                     <input type="radio" class="help-type__radio" name="help_type" id="help_translate"
@@ -329,7 +371,7 @@
             </ul>
         </fieldset>
         <fieldset>
-            <legend>Со мной можно связаться:</legend>
+            <legend>Со мной можно связаться: <span class="required">*</span></legend>
             <ul class="social">
                 <li class="social__item">
                     <a href="{{ route('socialize.request', ['provider' => 'facebook']) }}">
@@ -356,12 +398,19 @@
         </fieldset>
         <fieldset>
             <legend>Дополнительный контакты:</legend>
-            <div class="selectized-text">
+            <div class="combobox">
                 <select name="additional_type" id="additional_type">
                     <option value="email">Email</option>
                     <option value="telegram">Telegram</option>
                 </select>
-                <input type="text" name="additional" class="additional">
+                <div class="dropdown__container">
+                    <span class="dropdown__selected" data-value="email">Email</span>
+                    <div class="dropdown">
+                        <span class="dropdown__item dropdown__item_active" data-value="email">Email</span>
+                        <span class="dropdown__item" data-value="telegram">Telegram</span>
+                    </div>
+                </div>
+                <input type="text" name="additional" class="combobox__input">
             </div>
         </fieldset>
         <fieldset>
@@ -369,9 +418,44 @@
             <textarea name="comment" id="comment" rows="10"></textarea>
         </fieldset>
         <input type="submit" id="submit" value="Регистрация"><br>
-        <span class="description">* - Обязательное к заполнению поле</span>
+        <span class="description"><span class="required">*</span> - Обязательное к заполнению поле</span>
     </form>
 </div>
+<script type="application/javascript">
+    $(document).ready(function () {
+        var $select = $('.combobox select'),
+                $dropdownContainer = $('.dropdown__container'),
+                $dropdownSelected = $('.dropdown__selected'),
+                $dropdownItems = $('.dropdown__item');
 
+        $select.hide();
+        $dropdownContainer.show();
+        $dropdownSelected.on('click', function(event) {
+            event.preventDefault();
+            $dropdownContainer.toggleClass('dropdown__container_open');
+        })
+        $dropdownItems.on('click', function (event) {
+            event.preventDefault();
+            var $clicked = $(event.target);
+            var $active = $('.dropdown__item_active');
+
+            if (! $active.is($clicked)) {
+                $active.removeClass('dropdown__item_active');
+                $clicked.addClass('dropdown__item_active');
+                $dropdownSelected.attr('data-value', $clicked.attr('data-value'));
+                $dropdownSelected.text($clicked.text());
+                $select.val($clicked.attr('data-value'));
+            }
+
+            $dropdownContainer.removeClass('dropdown__container_open');
+        });
+
+        $(document).on('mouseup', function (event) {
+            if (! $dropdownContainer.is(event.target) && $dropdownContainer.has(event.target).length === 0) {
+                $dropdownContainer.removeClass('dropdown__container_open');
+            }
+        });
+    });
+</script>
 </body>
 </html>

@@ -124,18 +124,21 @@
             background-color: #fff;
         }
 
-        .help-type {
+        .help-list {
             list-style: none;
             padding: 0;
             margin: 0;
         }
+        .help-list .help-list {
+            padding: 15px 0 5px 40px;
+        }
 
-        .help-type__item {
+        .help-list__item {
             display: block;
             margin-top: 10px;
         }
 
-        .help-type__item:first-child {
+        .help-list__item:first-child {
             margin-top: 0;
         }
 
@@ -341,30 +344,276 @@
     <form>
         <fieldset>
             <legend>Хочу помочь: <span class="required">*</span></legend>
-            <ul class="help-type">
-                <li class="help-type__item">
+            <ul class="help-list help-type">
+                <li class="help-list__item">
                     <input type="radio" class="help-type__radio" name="help_type" id="help_translate"
                            value="help_translate">
                     <label for="help_translate">Переводить</label>
+                    <ul class="help-list help-translate">
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="aeronautics_astronautics"
+                                   id="aeronautics_astronautics">
+                            <label for="aeronautics_astronautics">Aeronautics/Astronautics</label>
+                        </li>
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="anthropology"
+                                   id="anthropology">
+                            <label for="anthropology">anthropology</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="architecture"
+                                   id="architecture">
+                            <label for="architecture">Architecture</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="athletics_physical_education"
+                                   id="athletics_physical_education">
+                            <label for="athletics_physical_education">Athletics/Physical Education</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="biology_biological_engineering"
+                                   id="biology_biological_engineering">
+                            <label for="biology_biological_engineering">Biology/Biological Engineering</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="brain_cognitive_sciences"
+                                   id="brain_cognitive_sciences">
+                            <label for="brain_cognitive_sciences">Brain/Cognitive Sciences</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="chemistry_chemical_engineering"
+                                   id="chemistry_chemical_engineering">
+                            <label for="chemistry_chemical_engineering">Chemistry/Chemical Engineering</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="civil_environmental_engineering"
+                                   id="civil_environmental_engineering">
+                            <label for="civil_environmental_engineering">Civil & Environmental Engineering</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="comparative_media_studies"
+                                   id="comparative_media_studies">
+                            <label for="comparative_media_studies">Comparative Media Studies</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="concourse"
+                                   id="concourse">
+                            <label for="concourse">Concourse</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="earth_atmospheric_planetary_sciences"
+                                   id="earth_atmospheric_planetary_sciences">
+                            <label for="earth_atmospheric_planetary_sciences">Earth, Atmospheric & Planetary Sciences</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="economics"
+                                   id="economics">
+                            <label for="economics">Economics</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="information_technology"
+                                   id="information_technology">
+                            <label for="information_technology">Information Technology</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="circuits_electronics"
+                                   id="circuits_electronics">
+                            <label for="circuits_electronics">Circuits & Electronics</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="engineering_systems_division"
+                                   id="engineering_systems_division">
+                            <label for="engineering_systems_division">Engineering Systems Division</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="experimental_study_group"
+                                   id="experimental_study_group">
+                            <label for="experimental_study_group">Experimental Study Group</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="global_studies_languages"
+                                   id="global_studies_languages">
+                            <label for="global_studies_languages">Global Studies & Languages</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="health_sciences_technology"
+                                   id="health_sciences_technology">
+                            <label for="health_sciences_technology">Health Sciences & Technology</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="history"
+                                   id="history">
+                            <label for="history">History</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="linguistics_philosophy"
+                                   id="linguistics_philosophy">
+                            <label for="linguistics_philosophy">Linguistics & Philosophy</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="literature"
+                                   id="literature">
+                            <label for="literature">Literature</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="materials_science_engineering"
+                                   id="materials_science_engineering">
+                            <label for="materials_science_engineering">Materials Science & Engineering</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="mathematics"
+                                   id="mathematics">
+                            <label for="mathematics">Mathematics</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="mechanical_engineering"
+                                   id="mechanical_engineering">
+                            <label for="mechanical_engineering">mechanical_engineering</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="media_arts_sciences"
+                                   id="media_arts_sciences">
+                            <label for="media_arts_sciences">Media Arts & Sciences</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="music_theater_arts"
+                                   id="music_theater_arts">
+                            <label for="music_theater_arts">Music & Theater Arts</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="nanotechnology_nanoscience"
+                                   id="nanotechnology_nanoscience">
+                            <label for="nanotechnology_nanoscience">Nanotechnology & Nanoscience</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="nuclear_science_engineering"
+                                   id="nuclear_science_engineering">
+                            <label for="nuclear_science_engineering">Nuclear Science & Engineering</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="physics"
+                                   id="physics">
+                            <label for="physics">Physics</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="political_science"
+                                   id="political_science">
+                            <label for="political_science">Political Science</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="science_technology_society"
+                                   id="science_technology_society">
+                            <label for="science_technology_society">Science, Technology & Society</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="sloan_school_of_management"
+                                   id="sloan_school_of_management">
+                            <label for="sloan_school_of_management">Sloan School of Management</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="underactuated_robotics"
+                                   id="underactuated_robotics">
+                            <label for="underactuated_robotics">Underactuated Robotics</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="urban_studies_planning"
+                                   id="urban_studies_planning">
+                            <label for="urban_studies_planning">urban_studies_planning</label>
+                        </li>
+
+                        <li class="help-list__item">
+                            <input type="checkbox" class="help-translate__checkbox"
+                                   name="help_translate[]" value="writing_humanistic_studies"
+                                   id="writing_humanistic_studies">
+                            <label for="writing_humanistic_studies">Writing & Humanistic Studies</label>
+                        </li>
+
+                    </ul>
                 </li>
-                <li class="help-type__item">
+                <li class="help-list__item">
                     <input type="radio" class="help-type__radio" name="help_type" id="help_edit" value="help_edit">
                     <label for="help_edit">Редактировать</label>
                 </li>
-                <li class="help-type__item">
+                <li class="help-list__item">
                     <input type="radio" class="help-type__radio" name="help_type" id="help_latex" value="help_latex">
                     <label for="help_latex">Верстать в LaTeX</label>
                 </li>
-                <li class="help-type__item">
+                <li class="help-list__item">
                     <input type="radio" class="help-type__radio" name="help_type" id="help_video" value="help_video">
                     <label for="help_video">Заниматься видеомонтажом</label>
                 </li>
-                <li class="help-type__item">
+                <li class="help-list__item">
                     <input type="radio" class="help-type__radio" name="help_type" id="help_develop"
                            value="help_develop">
                     <label for="help_develop">Заниматься разработкой</label>
                 </li>
-                <li class="help-type__item">
+                <li class="help-list__item">
                     <input type="radio" class="help-type__radio" name="help_type" id="help_design" value="help_design">
                     <label for="help_design">Заниматься дизайном</label>
                 </li>

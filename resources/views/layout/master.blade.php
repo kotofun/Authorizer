@@ -237,10 +237,27 @@
             background: #d74d41;
         }
 
-        .additional {
-            padding-left: 100px;
-            height: 40px;
+        .selectized-text {
+            position: relative;
+        }
+
+        .selectized-text input[type="text"] {
+            padding: 0 0 0 100px;
+            height: 38px;
             width: 300px;
+            margin: 0;
+            border: 1px solid #ccc;
+        }
+
+        .selectized-text select {
+            background: none;
+            height: 40px;
+            border: none;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            left: 0;
+            bottom: 0;
         }
 
         textarea {
@@ -339,7 +356,11 @@
         </fieldset>
         <fieldset>
             <legend>Дополнительный контакты:</legend>
-            <div>
+            <div class="selectized-text">
+                <select name="additional_type" id="additional_type">
+                    <option value="email">Email</option>
+                    <option value="telegram">Telegram</option>
+                </select>
                 <input type="text" name="additional" class="additional">
             </div>
         </fieldset>

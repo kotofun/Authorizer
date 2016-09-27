@@ -143,7 +143,9 @@
         }
 
         input[type='radio'].help-type__radio {
-            display: none;
+            opacity: 0;
+            outline: none;
+            position: absolute;
         }
 
         input[type='radio'].help-type__radio + label {
@@ -173,7 +175,9 @@
             display: none;
         }
 
-        input[type='radio'].help-type__radio + label:hover:before {
+        input[type='radio'].help-type__radio + label:hover:before,
+        input[type='radio'].help-type__radio:focus + label:before
+        {
             border-color: #ec4e42;
         }
 

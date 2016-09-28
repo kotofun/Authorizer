@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="10" height="24" viewBox="0 0 10 24">
-    <defs>
-        <path id="mark" fill="none" stroke="#fff" stroke-width="2" d="M1 4.5L4 8l5-6" stroke-linecap="round" stroke-linejoin="round"/>
-        <path id="expand" fill="none" stroke="#999" d="M.5 22.5l4.5-5 4.5 5" stroke-linecap="round" stroke-linejoin="round"/>
-        <path id="shrink" fill="none" stroke="#995" d="M.5 10.5l4.5 5 4.5-5" stroke-linecap="round" stroke-linejoin="round"/>
-    </defs>
-</svg>

@@ -189,7 +189,8 @@
         }
         
         .styled-box__check:checked + label:before {
-            background-image: url("/images/mark.svg");
+            background-image: url("/images/mark.png");
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMCA4Ij48cGF0aCBpZD0ibWFyayIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjIiIGQ9Ik0xIDQuNUw0IDhsNS02IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L3N2Zz4%3D");
             background-repeat: no-repeat;
             background-position: center center;
             background-size: 10px;
@@ -287,7 +288,8 @@
             border-right: none;
             line-height: 14px;
             cursor: pointer;
-            background-image: url("/images/expand.svg");
+            background-image: url("/images/expand.png");
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMC4wMDA1NjEgNi4wMDAyODE1Ij48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM5OTkiIGQ9Ik0uNTA0NzgwNy41MDUzMDYyOGw0LjQ5NiA0Ljk5NTAwMDAyIDQuNDk1LTQuOTk1MDAwMDIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg%3D%3D");
             background-repeat: no-repeat;
             background-position: right 10px center;
             background-size: 10px;
@@ -306,7 +308,8 @@
             color: #999;
             border: 1px solid #ccc;
             border-right: none;
-            background-image: url("/images/shrink.svg");
+            background-image: url("/images/shrink.png");
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMC4wMDA1NjEgNi4wMDAyODE1Ij48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM5OTkiIGQ9Ik0uNTA0NzgwNyA1LjQ5NDk3NTNsNC40OTYtNC45OTUwMDAwMyA0LjQ5NSA0Ljk5NTAwMDAzIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L3N2Zz4%3D");
             background-repeat: no-repeat;
             background-position: right 10px center;
             -webkit-background-size: 10px;

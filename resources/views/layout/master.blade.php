@@ -541,14 +541,20 @@
             var $subList = $('.with-sub-list').siblings('.sub-list');
             var $this = $(this);
             if ($this.hasClass('with-sub-list') && $this.is(':checked')) {
+                $subList.addClass('sub-list-opened');
                 $subList.show(timing, function (){
                     $(this).find('.help-list__item').first().show(timing, function showNext() {
                         $(this).next('.help-list__item').show(timing, showNext);
                     })
                 });
             } else {
-                $subList.hide();
-                $subList.find('.help-list__item').hide();
+                if ($('.sub-list-opened').length) {
+                    var $opened = $('.sub-list-opened');
+                    window.scrollTo($opened.position().left, $opened.position().top);
+                    $subList.hide();
+                    $subList.find('.help-list__item').hide();
+                    $('.sub-list-opened').removeClass('sub-list-opened');
+                }
             }
         })
     });

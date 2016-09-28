@@ -120,6 +120,8 @@
             display: block;
             width: 42.8571428571%;
             margin: -100px auto 0;
+            margin-bottom: 200px;
+            margin-bottom: 30vh;
             background-color: #fff;
         }
 
@@ -271,7 +273,7 @@
         }
 
         .description {
-            color: #cccccc;
+            color: #999;
             font-size: 10px;
         }
 
@@ -320,7 +322,7 @@
         .dropdown__selected {
             display: block;
             padding: 12px 30px 12px 12px;
-            color: #333;
+            color: #999;
         }
         .dropdown__item:hover,
         .dropdown__item_active {
@@ -534,7 +536,6 @@
             }
         });
 
-
         $('input[name="help_type"]').change(function () {
             var $subList = $('.with-sub-list').siblings('.sub-list');
             var $this = $(this);
@@ -545,11 +546,9 @@
                     })
                 });
             } else {
-
                 $subList.hide();
                 $subList.find('.help-list__item').hide();
             }
-
         })
     });
 </script>

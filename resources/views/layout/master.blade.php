@@ -36,6 +36,7 @@
         .headline-wrapper {
             height: 480px;
             background: #f07066 url("/images/robo.svg") 50% 90px no-repeat;
+            background-size: 340px;
         }
 
         .headline {
@@ -142,21 +143,21 @@
             margin-top: 0;
         }
 
-        .help-type__radio {
+        .styled-box {
             opacity: 0;
             outline: none;
             position: absolute;
         }
 
-        .help-type__radio + label {
+        .styled-box + label {
             position: relative;
             cursor: pointer;
             display: inline-block;
             padding-left: 25px;
         }
 
-        .help-type__radio + label:before,
-        .help-type__radio + label:after {
+        .styled-box + label:before,
+        .styled-box + label:after {
             content: "";
             display: inline-block;
             width: 14px;
@@ -166,29 +167,35 @@
             left: 0;
             bottom: 1px;
             background-color: transparent;
-            border-radius: 15px;
             border: 1px solid #cccccc;
         }
 
-        .help-type__radio + label:after {
+        .styled-box + label:after {
             border: none;
             display: none;
         }
 
-        .help-type__radio + label:hover:before,
-        .help-type__radio:focus + label:before
+        .styled-box + label:hover:before,
+        .styled-box:focus + label:before
         {
             border-color: #ec4e42;
         }
 
-        .help-type__radio:checked + label:before {
+        .styled-box:checked + label:before {
             width: 16px;
             height: 16px;
             background: #ec4e42;
             border: none;
         }
+        
+        .styled-box__check:checked + label:before {
+            background-image: url("/images/mark.svg");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 10px;
+        }
 
-        .help-type__radio:checked + label:after {
+        .styled-box__radio:checked + label:after {
             content: "";
             display: inline-block;
             width: 6px;
@@ -196,6 +203,11 @@
             background-color: #fff;
             left: 5px;
             bottom: 6px;
+        }
+
+        .styled-box__radio + label:before,
+        .styled-box__radio + label:after {
+            border-radius: 15px;
         }
 
         .social {
@@ -278,6 +290,7 @@
             background-image: url("/images/expand.svg");
             background-repeat: no-repeat;
             background-position: right 10px center;
+            background-size: 10px;
         }
 
         .dropdown {
@@ -296,6 +309,8 @@
             background-image: url("/images/shrink.svg");
             background-repeat: no-repeat;
             background-position: right 10px center;
+            -webkit-background-size: 10px;
+            background-size: 10px;
         }
         .dropdown__container_open .dropdown {
             visibility: visible;
@@ -350,7 +365,7 @@
             <legend>Хочу помочь: <span class="required">*</span></legend>
             <ul class="help-list help-type">
                 <li class="help-list__item">
-                    <input type="radio" class="help-type__radio" name="help_type" id="help_translate"
+                    <input type="radio" class="styled-box styled-box__radio" name="help_type" id="help_translate"
                            value="help_translate">
                     <label for="help_translate">Переводить</label>
                     <ul class="help-list help-translate">
@@ -393,7 +408,7 @@
                             ] as $section)
                             <?php $snaked = snake_case(str_replace(['&', '/', ','], ' ', $section)); ?>
                                     <li class="help-list__item">
-                                <input type="checkbox" class="help-translate__checkbox"
+                                <input type="checkbox" class="styled-box styled-box__check"
                                        name="help_translate[]" value="{{ $snaked }}"
                                        id="{{ $snaked }}">
                                 <label for="{{ $snaked }}">{{ $section }}</label>
@@ -402,24 +417,24 @@
                     </ul>
                 </li>
                 <li class="help-list__item">
-                    <input type="radio" class="help-type__radio" name="help_type" id="help_edit" value="help_edit">
+                    <input type="radio" class="styled-box styled-box__radio" name="help_type" id="help_edit" value="help_edit">
                     <label for="help_edit">Редактировать</label>
                 </li>
                 <li class="help-list__item">
-                    <input type="radio" class="help-type__radio" name="help_type" id="help_latex" value="help_latex">
+                    <input type="radio" class="styled-box styled-box__radio" name="help_type" id="help_latex" value="help_latex">
                     <label for="help_latex">Верстать в LaTeX</label>
                 </li>
                 <li class="help-list__item">
-                    <input type="radio" class="help-type__radio" name="help_type" id="help_video" value="help_video">
+                    <input type="radio" class="styled-box styled-box__radio" name="help_type" id="help_video" value="help_video">
                     <label for="help_video">Заниматься видеомонтажом</label>
                 </li>
                 <li class="help-list__item">
-                    <input type="radio" class="help-type__radio" name="help_type" id="help_develop"
+                    <input type="radio" class="styled-box styled-box__radio" name="help_type" id="help_develop"
                            value="help_develop">
                     <label for="help_develop">Заниматься разработкой</label>
                 </li>
                 <li class="help-list__item">
-                    <input type="radio" class="help-type__radio" name="help_type" id="help_design" value="help_design">
+                    <input type="radio" class="styled-box styled-box__radio" name="help_type" id="help_design" value="help_design">
                     <label for="help_design">Заниматься дизайном</label>
                 </li>
             </ul>

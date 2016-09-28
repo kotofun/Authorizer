@@ -25,8 +25,6 @@
 
     <title>Хочу помочь</title>
     <meta content="http://kursomir.ru/images/kursomir.png" itemprop="image"/>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=cyrillic" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <style>
         progress,sub,sup{vertical-align:baseline}button,hr,input{overflow:visible}html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0} figcaption, menu,article,aside,details,figure,footer,header,main,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0} [hidden],template{display:none}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}figure{margin:1em 40px}hr{box-sizing:content-box;height:0}button,input,optgroup,select,textarea{font:inherit;margin:0}optgroup{font-weight:700}button,input{}button,select{text-transform:none}[type=submit], [type=reset],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:ButtonText dotted 1px}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}
         html {
@@ -338,7 +336,15 @@
         .required {
             color: #ff7f2a;
         }
+        .sub-list {
+            display: none;
+        }
+        .help-translate .help-list__item {
+            display: none;
+        }
     </style>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=cyrillic" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -368,10 +374,10 @@
             <legend>Хочу помочь: <span class="required">*</span></legend>
             <ul class="help-list help-type">
                 <li class="help-list__item">
-                    <input type="radio" class="styled-box styled-box__radio" name="help_type" id="help_translate"
+                    <input type="radio" class="styled-box styled-box__radio with-sub-list" name="help_type" id="help_translate"
                            value="help_translate">
                     <label for="help_translate">Переводить</label>
-                    <ul class="help-list help-translate">
+                    <ul class="help-list help-translate sub-list">
                         @foreach([
                             'Aeronautics/Astronautics',
                             'Anthropology',
@@ -527,6 +533,24 @@
                 $dropdownContainer.removeClass('dropdown__container_open');
             }
         });
+
+
+        $('input[name="help_type"]').change(function () {
+            var $subList = $('.with-sub-list').siblings('.sub-list');
+            var $this = $(this);
+            if ($this.hasClass('with-sub-list') && $this.is(':checked')) {
+                $subList.show(50, function (){
+                    $(this).find('.help-list__item').first().show(50, function showNext() {
+                        $(this).next('.help-list__item').show(50, showNext);
+                    })
+                });
+            } else {
+
+                $subList.hide();
+                $subList.find('.help-list__item').hide();
+            }
+
+        })
     });
 </script>
 </body>

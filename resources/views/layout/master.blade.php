@@ -537,12 +537,13 @@
         });
 
         $('input[name="help_type"]').change(function () {
+            var timing = 10;
             var $subList = $('.with-sub-list').siblings('.sub-list');
             var $this = $(this);
             if ($this.hasClass('with-sub-list') && $this.is(':checked')) {
-                $subList.show(50, function (){
-                    $(this).find('.help-list__item').first().show(50, function showNext() {
-                        $(this).next('.help-list__item').show(50, showNext);
+                $subList.show(timing, function (){
+                    $(this).find('.help-list__item').first().show(timing, function showNext() {
+                        $(this).next('.help-list__item').show(timing, showNext);
                     })
                 });
             } else {

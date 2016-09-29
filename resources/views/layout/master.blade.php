@@ -549,8 +549,10 @@
                 });
             } else {
                 if ($('.sub-list-opened').length) {
-                    var $opened = $('.sub-list-opened');
-                    window.scrollTo($opened.position().left, $opened.position().top);
+                    var $scrollTo = $this.parents('fieldset');
+                    var paddingTop = 40;
+                    var scrollTime = 100;
+                    $('html body').animate({scrollTop: $scrollTo.position().top - paddingTop}, scrollTime);
                     $subList.hide();
                     $subList.find('.help-list__item').hide();
                     $('.sub-list-opened').removeClass('sub-list-opened');

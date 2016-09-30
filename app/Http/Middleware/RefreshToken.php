@@ -42,7 +42,7 @@ class RefreshToken
     private function logged(User $user, $token)
     {
         $cookie = new Cookie('token', $token, 0, '/', null, false, false);
-        $response = new Response(view('auth.logged')->with($user->toArray()));
+        $response = new Response(view('auth.logged')->with(['user' => $user->toArray()]));
         $response->withCookie($cookie);
 
         return $response;

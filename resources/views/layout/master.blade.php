@@ -469,21 +469,21 @@
         <fieldset>
             <legend>Со мной можно связаться: <span class="required">*</span></legend>
             <ul class="social">
-                <li class="social__item">
+                <li class="social__item{{ !empty($user) && in_array('facebook', $user['authored_providers']) ? " social__item_style_authored" : '' }}">
                     <a href="{{ route('socialize.request', ['provider' => 'facebook']) }}">
                         <svg role="img" title="Facebook social account" width="40" height="40">
                             <use xlink:href="/images/icons.svg#social-fb"/>
                         </svg>
                     </a>
                 </li>
-                <li class="social__item">
+                <li class="social__item{{ !empty($user) && in_array('vkontakte', $user['authored_providers']) ? " social__item_style_authored" : '' }}">
                     <a href="{{ route('socialize.request', ['provider' => 'vkontakte']) }}">
                         <svg role="img" title="VKontakte social account" width="40" height="40">
                             <use xlink:href="/images/icons.svg#social-vk"/>
                         </svg>
                     </a>
                 </li>
-                <li class="social__item">
+                <li class="social__item{{ !empty($user) && in_array('google', $user['authored_providers']) ? " social__item_style_authored" : '' }}">
                     <a href="{{ route('socialize.request', ['provider' => 'google']) }}">
                         <svg role="img" title="Google + social account" width="40" height="40">
                             <use xlink:href="/images/icons.svg#social-gp"/>

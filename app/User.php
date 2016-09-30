@@ -15,6 +15,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 {
     use Authenticatable, Authorizable, SoftDeletes;
 
+    protected $appends = ['authored_providers'];
     /**
      * The attributes that are mass assignable.
      *
@@ -75,5 +76,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function socialAccounts()
     {
         return $this->hasMany(SocialAccount::class);
+    }
+
+    public function getAuthoredProvidersAttribute()
+    {
+        return $this->socialAccounts()->get()->pluck('provider')->toArray();
     }
 }

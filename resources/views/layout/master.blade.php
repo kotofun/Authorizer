@@ -477,7 +477,7 @@
             </ul>
         </fieldset>
         <fieldset>
-            <legend>Дополнительный контакты:</legend>
+            <legend>Дополнительный контакт:</legend>
             <div class="combobox">
                 <select name="additional_type" id="additional_type">
                     <option value="email">Email</option>

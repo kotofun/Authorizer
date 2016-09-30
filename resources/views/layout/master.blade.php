@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="no-js">
 <head>
     <meta charset="utf-8"/>
     <meta content="503d8909f76eb7ce" name="yandex-verification"/>
@@ -338,11 +338,13 @@
         .required {
             color: #ff7f2a;
         }
-        .sub-list {
-            display: none;
-        }
+        .sub-list,
         .help-translate .help-list__item {
             display: none;
+        }
+        .no-js .sub-list,
+        .no-js .help-translate .help-list__item {
+            display: block;
         }
     </style>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=cyrillic" rel="stylesheet">
@@ -503,6 +505,8 @@
 </div>
 <script type="application/javascript">
     $(document).ready(function () {
+        $('.no-js').removeClass('no-js');
+
         var $select = $('.combobox select'),
                 $dropdownContainer = $('.dropdown__container'),
                 $dropdownSelected = $('.dropdown__selected'),

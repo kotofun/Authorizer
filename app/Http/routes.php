@@ -19,8 +19,8 @@ $app->group(['middleware' => ['token.refresh'], 'namespace' => '\App\Http\Contro
     $app->post('register', ['uses' => 'AuthController@register', 'as' => 'auth.register.post']);
 
     $app->group(['namespace' => 'App\Http\Controllers'], function () use ($app) {
-        $app->get('socialize/{provider}', ['uses' => 'AuthController@request', 'as' => 'socialize.request']);
-        $app->get('socialize/{provider}/handle', ['uses' => 'AuthController@handle', 'as' => 'socialize.handle']);
+        $app->get('socialize/{provider}', ['uses' => 'SocialiteController@request', 'as' => 'socialize.request']);
+        $app->get('socialize/{provider}/handle', ['uses' => 'SocialiteController@handle', 'as' => 'socialize.handle']);
     });
 });
 

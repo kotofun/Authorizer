@@ -128,4 +128,12 @@ class RedirectMapper
     {
         return $this->redirectTo;
     }
+
+    /**
+     * @return string
+     */
+    public function getRedirectKey()
+    {
+        return $this->redirectKey;
+    }
 }

@@ -24,6 +24,11 @@ $app->group(['middleware' => ['token.refresh'], 'namespace' => '\App\Http\Contro
     });
 });
 
+$app->group(['middleware' => [], 'namespace' => '\App\Http\Controllers'], function () use ($app) {
+    $app->get('/help', ['uses' => 'HelpController@index', 'as' => 'show.help.get']);
+    $app->post('/help', ['uses' => 'HelpController@index', 'as' => 'show.help.post']);
+});
+
 $app->group(['namespace' => '\App\Http\Controllers'], function () use ($app) {
     $app->post('token/refresh', ['uses' => 'TokenController@refresh', 'as' => 'token.update']);
 });

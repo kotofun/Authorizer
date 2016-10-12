@@ -22,6 +22,11 @@ class SocialiteController
      */
     private $mapper;
 
+    /**
+     * @var \App\Services\Tokenizer
+     */
+    private $tokenizer;
+
     public function __construct(Tokenizer $tokenizer, RedirectMapper $mapper)
     {
         $this->tokenizer = $tokenizer;

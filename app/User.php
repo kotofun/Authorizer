@@ -63,4 +63,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return $this->socialAccounts()->get()->pluck('provider')->toArray();
     }
+
+    public function info()
+    {
+        return $this->hasMany(UserInfo::class);
+    }
 }

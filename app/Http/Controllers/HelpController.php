@@ -30,10 +30,11 @@ class HelpController extends Controller
         $helpAccepted = false;
 
         if ( ! is_null($user)) {
-            if ($user->info) {
+            if (count($user->info)) {
+
                 $helpAccepted = true;
             } else if ($request->method() === 'POST') {
-                $helpAccepted = $this->acceptHelp($request);
+                $helpAccepted = $this->acceptHelp($request, $user);
             }
         }
 

@@ -43,7 +43,7 @@ class Tokenizer
         $token = $this->parse($token);
 
         if ( ! $this->isValid($token)) {
-            return;
+            throw new InvalidTokenException();
         }
 
         $user = $this->userFrom($token);

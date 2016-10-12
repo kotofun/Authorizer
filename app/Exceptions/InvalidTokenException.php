@@ -7,7 +7,10 @@ namespace App\Exceptions;
  *
  * @author Dmitry Basavin <basavind@gmail.com>
  */
-class InvalidTokenException extends \InvalidArgumentException
+class InvalidTokenException extends \RuntimeException
 {
-    //
+    public function __construct($message = 'JWT is invalid!', $code = 0, \Exception $previous = null)
+    {
+        parent::__construct($message, $code, $previous);
+    }
 }

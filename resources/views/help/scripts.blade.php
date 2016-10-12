@@ -10,7 +10,7 @@
 
             $select.hide();
             $dropdownContainer.show();
-            $dropdownSelected.on('click', function(event) {
+            $dropdownSelected.on('click', function (event) {
                 event.preventDefault();
                 $dropdownContainer.toggleClass('dropdown__container_open');
             })
@@ -19,7 +19,7 @@
                 var $clicked = $(event.target);
                 var $active = $selectified.find('.dropdown__item_active');
 
-                if (! $active.is($clicked)) {
+                if (!$active.is($clicked)) {
                     $active.removeClass('dropdown__item_active');
                     $clicked.addClass('dropdown__item_active');
                     $dropdownSelected.attr('data-value', $clicked.attr('data-value'));
@@ -31,7 +31,7 @@
             });
 
             $(document).on('mouseup', function (event) {
-                if (! $dropdownContainer.is(event.target) && $dropdownContainer.has(event.target).length === 0) {
+                if (!$dropdownContainer.is(event.target) && $dropdownContainer.has(event.target).length === 0) {
                     $dropdownContainer.removeClass('dropdown__container_open');
                 }
             });
@@ -50,7 +50,7 @@
                 var $this = $(this);
                 if ($this.hasClass('with-sub-list') && $this.is(':checked')) {
                     $subList.addClass('sub-list-opened');
-                    $subList.show(settings.openDuration, function (){
+                    $subList.show(settings.openDuration, function () {
                         $(this).find('.help-list__item').first().show(settings.openDuration, function showNext() {
                             $(this).next('.help-list__item').show(settings.openDuration, showNext);
                         })

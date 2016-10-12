@@ -74,7 +74,7 @@ class Tokenizer
     public function userFrom($token)
     {
         $token = $this->parse($token);
-        $user = User::findOrFail($token->getClaim('sub'));
+        $user = User::find($token->getClaim('sub'));
 
         return $user;
     }

@@ -398,6 +398,16 @@
         margin-bottom: 16px;
     }
 
+    #submit:hover {
+        cursor: pointer;
+        background: #d74d41;
+    }
+
+    #submit:disabled,
+    #submit:disabled:hover {
+        background-color: #666;
+    }
+
     .social__item_style_authored a:after {
         content: '';
         display: block;
@@ -410,11 +420,6 @@
         position: absolute;
         bottom: -5px;
         right: -5px;
-    }
-
-    #submit:hover {
-        cursor: pointer;
-        background: #d74d41;
     }
 
     .combobox {

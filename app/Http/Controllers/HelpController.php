@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\InvalidTokenException;
 use App\Services\Tokenizer;
 use Illuminate\Support\Facades\Cookie;
 
@@ -22,12 +23,26 @@ class HelpController extends Controller
 
     public function index()
     {
-        $user = null;
-        if ($token = Cookie::get('token')) {
-            $token = $this->tokenizer->refreshToken($token);
-            $user = $this->tokenizer->userFrom($token);
-        }
+        $token = Cookie::get('token');
+        $user = $this->tryGetUserFrom($token);
 
         return view('help.show', compact('user'));
+    }
+
+    /**
+     * @param $token
+     *
+     * @return mixed
+     */
+    private function tryGetUserFrom($token)
+    {
+        try {
+            $token = $this->tokenizer->refreshToken($token);
+            $user = $this->tokenizer->userFrom($token);
+        } catch (InvalidTokenException $e) {
+            return;
+        }
+
+        return $user;
     }
 }

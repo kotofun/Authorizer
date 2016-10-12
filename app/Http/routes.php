@@ -11,24 +11,15 @@
 |
 */
 
-$app->group(['middleware' => ['token.refresh'], 'namespace' => '\App\Http\Controllers'], function () use ($app) {
-    $app->get('/', ['uses' => 'AuthController@login', 'as' => 'auth.login.get']);
-    $app->post('/', ['uses' => 'AuthController@login', 'as' => 'auth.login.post']);
-
-    $app->get('register', ['uses' => 'AuthController@register', 'as' => 'auth.register.get']);
-    $app->post('register', ['uses' => 'AuthController@register', 'as' => 'auth.register.post']);
-
-    $app->group(['namespace' => 'App\Http\Controllers'], function () use ($app) {
-        $app->get('socialize/{provider}', ['uses' => 'SocialiteController@request', 'as' => 'socialize.request']);
-        $app->get('socialize/{provider}/handle', ['uses' => 'SocialiteController@handle', 'as' => 'socialize.handle']);
-    });
+$app->get('/', function () use ($app) {
+    return redirect()->route('help.get');
+});
+$app->group(['namespace' => 'App\Http\Controllers'], function () use ($app) {
+    $app->get('socialize/{provider}', ['uses' => 'SocialiteController@request', 'as' => 'socialize.request']);
+    $app->get('socialize/{provider}/handle', ['uses' => 'SocialiteController@handle', 'as' => 'socialize.handle']);
 });
 
 $app->group(['middleware' => [], 'namespace' => '\App\Http\Controllers'], function () use ($app) {
     $app->get('/help', ['uses' => 'HelpController@index', 'as' => 'help.get']);
     $app->post('/help', ['uses' => 'HelpController@index', 'as' => 'help.post']);
-});
-
-$app->group(['namespace' => '\App\Http\Controllers'], function () use ($app) {
-    $app->post('token/refresh', ['uses' => 'TokenController@refresh', 'as' => 'token.update']);
 });

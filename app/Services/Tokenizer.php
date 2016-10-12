@@ -55,6 +55,8 @@ class Tokenizer
     {
         if (is_null($token)) {
             throw new InvalidTokenException('token could not be null');
+        } elseif ($token instanceof Token) {
+            return $token;
         } elseif (is_string($token)) {
             $token = $this->parser->parse($token);
         }
@@ -71,9 +73,7 @@ class Tokenizer
 
     public function userFrom($token)
     {
-        if (is_string($token)) {
-            $token = $this->parse($token);
-        }
+        $token = $this->parse($token);
         $user = User::findOrFail($token->getClaim('sub'));
 
         return $user;

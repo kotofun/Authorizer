@@ -24,6 +24,7 @@ class HelpController extends Controller
     public function index()
     {
         $token = Cookie::get('token');
+        $token = $this->tokenizer->refreshToken($token);
         $user = $this->tryGetUserFrom($token);
 
         return view('help.show', compact('user'));
@@ -37,7 +38,6 @@ class HelpController extends Controller
     private function tryGetUserFrom($token)
     {
         try {
-            $token = $this->tokenizer->refreshToken($token);
             $user = $this->tokenizer->userFrom($token);
         } catch (InvalidTokenException $e) {
             return;

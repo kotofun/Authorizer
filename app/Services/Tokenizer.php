@@ -69,8 +69,11 @@ class Tokenizer
         return $token->validate($this->validationData) && $token->verify($this->jwtSigner, env('JWT_SECRET'));
     }
 
-    public function userFrom(Token $token)
+    public function userFrom($token)
     {
+        if (is_string($token)) {
+            $token = $this->parse($token);
+        }
         $user = User::findOrFail($token->getClaim('sub'));
 
         return $user;

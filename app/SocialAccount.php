@@ -15,6 +15,13 @@ class SocialAccount extends Model
         'user_id',
         'provider',
         'provider_user_id',
+        'token',
+        'refresh_token',
+        'expires_in',
+        'nickname',
+        'name',
+        'email',
+        'avatar'
     ];
 
     /**

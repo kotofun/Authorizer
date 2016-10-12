@@ -23,8 +23,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     protected $fillable = [
         'name',
-        'nickname',
-        'email',
         'password',
     ];
 
@@ -36,23 +34,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'password',
     ];
-
-    /**
-     * Create user by given social provider.
-     *
-     * @param \Laravel\Socialite\Contracts\User $providerUser
-     *
-     * @return static
-     */
-    public static function createBySocialProvider(ProviderUser $providerUser)
-    {
-        return self::create([
-            'nickname' => $providerUser->getNickname(),
-            'name' => $providerUser->getName(),
-            'nickname' => $providerUser->getNickname(),
-            'email' => $providerUser->getEmail(),
-        ]);
-    }
 
     public static function createFromRegister(array $attributes)
     {

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\InvalidTokenException;
 use App\Services\RedirectMapper;
 use App\Services\SocialAccountService;
 use App\Services\Tokenizer;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Cookie as CookieFacade;
 use Laravel\Socialite\Facades\Socialite;
 use Symfony\Component\HttpFoundation\Cookie;
 
@@ -43,28 +43,6 @@ class SocialiteController
             ->redirect();
     }
 
-    public function handle(SocialAccountService $socialAccountService, $provider)
-    {
-        $redirectUrl = $this->buildRedirectUrlFor($provider);
-
-        $user = $socialAccountService->createOrGetUser(
-            Socialite::driver($provider)
-                ->stateless()
-                ->redirectUrl($redirectUrl)
-                ->user(),
-            $provider);
-
-        $token = $this->tokenizer->buildFrom($user);
-
-        if ($to = $this->mapper->getRedirectTo()) {
-            $cookie = new Cookie('token', $token, 0, '/', null, false, false);
-
-            return redirect($to)->withCookie($cookie);
-        }
-
-        return redirect('/');
-    }
-
     /**
      * @param $provider
      *
@@ -81,5 +59,35 @@ class SocialiteController
         }
 
         return $redirectUrl;
+    }
+
+    public function handle(SocialAccountService $socialAccountService, $provider)
+    {
+        $redirectUrl = $this->buildRedirectUrlFor($provider);
+
+        $token = CookieFacade::get('token');
+        try {
+            $user = $this->tokenizer->userFrom($token);
+        } catch (InvalidTokenException $e) {
+            $user = null;
+        }
+
+        $user = $socialAccountService->createOrGetUser(
+            $provider,
+            Socialite::driver($provider)
+                ->stateless()
+                ->redirectUrl($redirectUrl)
+                ->user(),
+            $user);
+
+        $token = $this->tokenizer->buildFrom($user);
+
+        if ($to = $this->mapper->getRedirectTo()) {
+            $cookie = new Cookie('token', $token, 0, '/', null, false, false);
+
+            return redirect($to)->withCookie($cookie);
+        }
+
+        return redirect('/');
     }
 }

@@ -8,30 +8,56 @@ use Laravel\Socialite\Contracts\User as ProviderUser;
 
 class SocialAccountService
 {
-    public function createOrGetUser(ProviderUser $providerUser, $providerName)
+    public function createOrGetUser($providerName, ProviderUser $providerUser, User $authoredUser = null)
     {
-        $account = SocialAccount::findByProvider($providerName, $providerUser->getId())
-            ->first();
+        if ($socialAccount = $this->socialAccountFor($providerName, $providerUser)) {
+            $authoredUser = $socialAccount->user;
+        } else {
+            if (is_null($authoredUser)) {
+                $authoredUser = $this->createNewUser();
+            }
 
-        if ($account) {
-            return $account->user;
+            $socialAccount = $this->createSocialAccount($providerName, $providerUser);
+            $this->attachSocialAccount($authoredUser, $socialAccount);
         }
 
-        $account = SocialAccount::create([
+        return $authoredUser->fresh();
+    }
+
+    private function socialAccountFor($providerName, ProviderUser $providerUser)
+    {
+        return SocialAccount::findByProvider($providerName, $providerUser->getId())
+            ->first();
+    }
+
+    private function createNewUser()
+    {
+        return User::create();
+    }
+
+    private function createSocialAccount($providerName, ProviderUser $providerUser)
+    {
+        // Create social account if social account for user does not exists
+        $socialAccount = SocialAccount::create([
             'provider' => $providerName,
             'provider_user_id' => $providerUser->getId(),
+            'token' => $providerUser->token,
+            'refresh_token' => $providerUser->refreshToken,
+            'expires_in' => $providerUser->expiresIn,
+            'nickname' => $providerUser->getNickname(),
+            'name' => $providerUser->getName(),
+            'email' => $providerUser->getEmail(),
+            'avatar' => $providerUser->getAvatar(),
         ]);
 
-        $user = User::where('email', $providerUser->getEmail())
-            ->first();
+        return $socialAccount;
+    }
 
-        if ( ! $user) {
-            $user = User::createBySocialProvider($providerUser);
-        }
+    private function attachSocialAccount(User $authoredUser, SocialAccount $socialAccount)
+    {
+        $socialAccount->user()->associate($authoredUser);
+        $socialAccount->save();
 
-        $account->user()->associate($user);
-        $account->save();
-
-        return $user;
+        return $authoredUser;
     }
 }

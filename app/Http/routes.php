@@ -14,12 +14,17 @@
 $app->get('/', function () use ($app) {
     return redirect()->route('help.get');
 });
+
 $app->group(['namespace' => 'App\Http\Controllers'], function () use ($app) {
     $app->get('socialize/{provider}', ['uses' => 'SocialiteController@request', 'as' => 'socialize.request']);
     $app->get('socialize/{provider}/handle', ['uses' => 'SocialiteController@handle', 'as' => 'socialize.handle']);
 });
 
 $app->group(['middleware' => [], 'namespace' => '\App\Http\Controllers'], function () use ($app) {
-    $app->get('/help', ['uses' => 'HelpController@index', 'as' => 'help.get']);
-    $app->post('/help', ['uses' => 'HelpController@index', 'as' => 'help.post']);
+    $app->get('help', ['uses' => 'HelpController@index', 'as' => 'help.get']);
+    $app->post('help', ['uses' => 'HelpController@index', 'as' => 'help.post']);
+});
+
+$app->group(['middleware' => ['jwt-auth'], 'namespace' => '\App\Http\Controllers'], function () use ($app) {
+    $app->get('user', ['uses' => 'UserController@index', 'as' => 'users.list.get']);
 });

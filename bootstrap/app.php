@@ -69,6 +69,10 @@ $app->singleton(
 // ]);
 
 $app->routeMiddleware([
+    'jwt-auth' => \App\Http\Middleware\JWTAuthenticate::class,
+]);
+
+$app->routeMiddleware([
     'token.refresh' => \App\Http\Middleware\RefreshToken::class,
 ]);
 

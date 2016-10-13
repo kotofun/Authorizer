@@ -26,7 +26,7 @@ class JWTAuthenticate
         $token = $request->cookie('token');
 
         if (is_null($token) || ( ! $this->tokenizer->isValid($token))) {
-            return response('Unauthorized.', 401);
+            return view('auth.login');
         }
 
         return $next($request);

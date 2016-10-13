@@ -9,4 +9,5 @@
 
 return [
     'help' => 'help',
+    'user' => 'user',
 ];

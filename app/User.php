@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Lumen\Auth\Authorizable;
-use Laravel\Socialite\Contracts\User as ProviderUser;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
@@ -67,5 +66,15 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function info()
     {
         return $this->hasMany(UserInfo::class);
+    }
+
+    /**
+     * Get all roles for this user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
     }
 }

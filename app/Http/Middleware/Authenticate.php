@@ -35,6 +35,7 @@ class Authenticate
      */
     public function handle($request, Closure $next, $guard = null)
     {
+        // FIXME: replace with jwt guard
         if ($this->auth->guard($guard)->guest()) {
             return response('Unauthorized.', 401);
         }

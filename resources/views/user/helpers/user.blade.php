@@ -5,7 +5,7 @@
         <br>
         <strong>Помощь: {{$info->helps['help_type']}}</strong>
         @if($helps = $info->helps['help_value'])
-            {{ var_dump($helps)  }}
+            {{ implode(', ', $helps)  }}
         @endif
         @if($info->contact_value)
             <br>

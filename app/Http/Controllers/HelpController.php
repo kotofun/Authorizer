@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Exceptions\InvalidTokenException;
 use App\Services\Tokenizer;
 use App\User;
 use Illuminate\Http\Request;
@@ -71,13 +70,11 @@ class HelpController extends Controller
      */
     private function tryExtractUserFrom($token)
     {
-        try {
-            $user = $this->tokenizer->userFrom($token);
-        } catch (InvalidTokenException $e) {
-            return;
+        if ($this->tokenizer->isValid($token)) {
+            return $this->tokenizer->userFrom($token);
         }
 
-        return $user;
+        return;
     }
 
     /**

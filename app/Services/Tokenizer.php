@@ -66,7 +66,11 @@ class Tokenizer
 
     public function isValid($token)
     {
-        $token = $this->parse($token);
+        try {
+            $token = $this->parse($token);
+        } catch (InvalidTokenException $e) {
+            return false;
+        }
 
         return $token->validate($this->validationData) && $token->verify($this->jwtSigner, env('JWT_SECRET'));
     }
